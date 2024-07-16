@@ -1,51 +1,28 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { CrudInterfaces } from './interfaces/crud.interfaces';
-
-export class ProductService {
-}
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  private apiUrl = 'http://localhost:3000';
+  private url = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
 
-  
-  createCrud<T>(item: T): Observable<CrudInterfaces> {
-    return this.http.post<CrudInterfaces>(this.apiUrl+'/crud', item).pipe(
-      catchError(this.handleError) 
-    );
+  createCrud<T>(item: T): Observable<T> {
+    return this.http.post<T>(`${this.url}/polluting-gases`, item);
   }
 
- 
-  updateShoesComponent(id: string, item: CrudInterfaces): Observable<CrudInterfaces> {
-    return this.http.patch<CrudInterfaces>(`${this.apiUrl}/${id}`, item).pipe(
-      catchError(this.handleError) 
-    );
+  updateCrud(id: string, item: any): Observable<any> {
+    return this.http.patch<any>(`${this.url}/polluting-gases/${id}`, item);
   }
 
- 
-  deleteShoesComponent(id: string): Observable<CrudInterfaces> {
-    return this.http.delete<CrudInterfaces>(`${this.apiUrl}/${id}`).pipe(
-      catchError(this.handleError) 
-    );
+  deleteCrud(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.url}/polluting-gases/${id}`);
   }
 
-  
-  getCrud(): Observable<CrudInterfaces[]> {
-    return this.http.get<CrudInterfaces[]>(`${this.apiUrl}/crud`).pipe(
-      catchError(this.handleError) 
-    );
-  }
-
-  // Private function to handle HTTP errors
-  private handleError(error: HttpErrorResponse): Observable<never> {
-    console.error('API Error:', error);
-    return throwError(error); // Propagate the error
+  getCrud(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.url}/polluting-gases`);
   }
 }

@@ -1,0 +1,49 @@
+<h1>Products</h1>
+
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitFormCrud()">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Nombre</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <input
+        nz-input
+        formControlName="name"
+        placeholder="Chocolate Bar"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Descripción</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <input
+        nz-input
+        formControlName="description"
+        placeholder="Delicious Chocolate"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Nomenclatura</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <input
+      nz-input
+        formControlName="nomenclature"
+        placeholder="CO2"
+      >
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control
+      [nzXs]="{ span: 24, offset: 0 }"
+      [nzSm]="{ span: 16, offset: 8 }"
+    >
+      <button nz-button nzType="primary">Submit</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+<app-crud-update-form
+  *ngIf="selectedCrud"
+  [crud]="selectedCrud"
+  (crudUpdated)="onCrudUpdated()"
+></app-crud-update-form> -->
+<app-crud-list></app-crud-list>
