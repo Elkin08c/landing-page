@@ -38,8 +38,8 @@ import { Validators as MyValidators } from '@angular/forms';
     NzButtonComponent,
     NzInputNumberComponent,
   ],
-  templateUrl: './crud-update-form.component.html',
-  styleUrls: ['./crud-update-form.component.css'],
+  templateUrl: './crud-update-from.component.html',
+  styleUrls: ['./crud-update-from.component.css'],
 })
 export class CrudUpdateFormComponent implements OnChanges {
   validateForm: FormGroup<{

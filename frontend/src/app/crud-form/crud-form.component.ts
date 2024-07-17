@@ -16,7 +16,7 @@ import { NzButtonComponent } from 'ng-zorro-antd/button';
 import { NzInputNumberComponent } from 'ng-zorro-antd/input-number';
 import { Validators as MyValidators } from '@angular/forms';
 import { CrudListComponent } from '../crud-list/crud.component'; 
-import { CrudUpdateFormComponent } from '../crud-update-from/crud-update-from.component';
+import { CrudUpdateFormComponent } from '../update-crud-from/crud-update-from.component';
 import { CommonModule, NgIf } from '@angular/common';
 
 @Component({

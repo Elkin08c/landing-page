@@ -22,7 +22,7 @@ export class CrudListComponent implements OnInit {
   }
 
   loadCrud(): void {
-    this.apiService.getCrud().subscribe((data) => {
+    this.apiService.getCrud().subscribe((data: any[]) => {
       this.crud = data;
       console.log(this.crud);
     });
