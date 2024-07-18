@@ -1,0 +1,21 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+#about-us {
+    background-color: #f4f4f4;
+    padding: 40px;
+    text-align: center;
+}
+
+#about-us h1 {
+    color: #333;
+}
+
+#about-us p {
+    color: #666;
+    max-width: 600px;
+    margin: auto;
+}

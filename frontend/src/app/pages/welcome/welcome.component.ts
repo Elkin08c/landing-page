@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudFormComponent } from '../../crud-form/crud-form.component';
 import { CrudListComponent } from "../../crud-list/crud.component";
+import { SlidesComponent } from '../../landing/slides/slides.component';
 
 @Component({
   selector: 'app-welcome',
@@ -9,6 +10,7 @@ import { CrudListComponent } from "../../crud-list/crud.component";
   imports: [
     CrudFormComponent,
     CrudListComponent,
+    SlidesComponent
 ],
   styleUrls: ['./welcome.component.css'],
 })

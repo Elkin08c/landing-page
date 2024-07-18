@@ -8,6 +8,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 @Component({
   selector: 'app-root',
   standalone: true,
+  providers: [],
   imports: [CommonModule, RouterOutlet, NzIconModule, NzLayoutModule, NzMenuModule, RouterModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
@@ -22,7 +23,17 @@ export class AppComponent {
         label: 'Home', 
         path: '/welcome', 
         icon: 'home' 
-      }
+      },
+      {
+        label: 'Post',
+        path: '/crud-form',
+        icon: 'form',
+      },
+      {
+        label: 'List',
+        path: '/crud',
+        icon: 'bars',
+      },
     ];
   }
 }
