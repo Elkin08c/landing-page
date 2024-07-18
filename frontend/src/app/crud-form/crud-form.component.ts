@@ -14,10 +14,10 @@ import { NzInputDirective } from 'ng-zorro-antd/input';
 import { NzDatePickerComponent } from 'ng-zorro-antd/date-picker';
 import { NzButtonComponent } from 'ng-zorro-antd/button';
 import { NzInputNumberComponent } from 'ng-zorro-antd/input-number';
-import { Validators as MyValidators } from '@angular/forms';
+import { FormBuilder, Validators as Validators } from '@angular/forms';
 import { CrudListComponent } from '../crud-list/crud.component'; 
-import { CrudUpdateFormComponent } from '../update-crud-from/crud-update-from.component';
 import { CommonModule, NgIf } from '@angular/common';
+
 
 @Component({
   selector: 'app-crud-form',
@@ -34,65 +34,53 @@ import { CommonModule, NgIf } from '@angular/common';
     NzButtonComponent,
     NzInputNumberComponent,
     CrudListComponent,
-    CrudUpdateFormComponent,
     CommonModule,
     NgIf,
   ],
   templateUrl: './crud-form.component.html',
   styleUrls: ['./crud-form.component.css'],
 })
+
 export class CrudFormComponent {
-
-  validateForm: FormGroup<{
-    name: FormControl<string>;
-    description: FormControl<string>;
-    nomenclature: FormControl<string>;
-  }>;
-
-  selectedCrud: any;
+  validateForm: FormGroup;
+  selectedCrud: any = null;
 
   constructor(
     private apiService: ApiService,
-    private fb: NonNullableFormBuilder,
+    private fb: FormBuilder,
     private notification: NzNotificationService
   ) {
-    const { required } = MyValidators;
     this.validateForm = this.fb.group({
-      name: ['', [required]],
-      description: ['', [required]],
-      nomenclature: ['', [required]],
+      name: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      nomenclature: ['', [Validators.required]],
     });
   }
 
   submitFormCrud(): void {
     if (this.validateForm.valid) {
-      this.apiService.createCrud(this.validateForm.value).subscribe(() => {
-        this.createNotification(
-          'success',
-          `${this.validateForm.value.name} ${this.validateForm.value.description}`,
-          'The Product has been created successfully!'
-        );
-        this.validateForm.reset();
-      });
+      const formData = this.validateForm.value;
+      if (this.selectedCrud) {
+        this.apiService.updateCrud(this.selectedCrud.id, formData).subscribe(() => this.onSuccess('updated'));
+      } else {
+        this.apiService.createCrud(formData).subscribe(() => this.onSuccess('created'));
+      }
     } else {
-      Object.values(this.validateForm.controls).forEach((control) => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
+      Object.values(this.validateForm.controls).forEach(control => {
+        control.markAsDirty();
+        control.updateValueAndValidity();
       });
     }
   }
+
 
   createNotification(type: string, title: string, message: string): void {
     this.notification.create(type, title, message);
   }
 
-  editCrud(product: any): void {
-    this.selectedCrud = product;
-  }
-
-  onCrudUpdated(): void {
+  onSuccess(action: string): void {
+    this.createNotification('success', 'Success', `Product has been ${action} successfully!`);
+    this.validateForm.reset();
     this.selectedCrud = null;
   }
 }

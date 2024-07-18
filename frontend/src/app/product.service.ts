@@ -6,23 +6,23 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  private url = 'http://localhost:3000';
+  private baseUrl = 'http://localhost:3000/polluting-gases';
 
   constructor(private http: HttpClient) {}
 
   createCrud<T>(item: T): Observable<T> {
-    return this.http.post<T>(`${this.url}/polluting-gases`, item);
+    return this.http.post<T>(this.baseUrl, item);
   }
 
   updateCrud(id: string, item: any): Observable<any> {
-    return this.http.patch<any>(`${this.url}/polluting-gases/${id}`, item);
+    return this.http.patch<any>(`${this.baseUrl}/${id}`, item);
   }
 
   deleteCrud(id: string): Observable<any> {
-    return this.http.delete<any>(`${this.url}/polluting-gases/${id}`);
+    return this.http.delete<any>(`${this.baseUrl}/${id}`);
   }
 
   getCrud(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.url}/polluting-gases`);
+    return this.http.get<any[]>(this.baseUrl);
   }
 }
