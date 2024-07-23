@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudFormComponent } from '../../crud-form/crud-form.component';
-import { CrudListComponent } from "../../crud-list/crud.component";
-import { SlidesComponent } from '../../landing/slides/slides.component';
+import { GasesComponent } from '../../components/gases/gases.component';
+import { GasesListComponent } from '../../components/gases-list/gases-list.component';
+import { UpdateGasesComponent } from '../../components/update-gases/update-gases.component';
+
 
 @Component({
   selector: 'app-welcome',
   standalone: true,
   templateUrl: './welcome.component.html',
   imports: [
-    CrudFormComponent,
-    CrudListComponent,
-    SlidesComponent
+    GasesComponent,
+    GasesListComponent,
+    UpdateGasesComponent
 ],
   styleUrls: ['./welcome.component.css'],
 })

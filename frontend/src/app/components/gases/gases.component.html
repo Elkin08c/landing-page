@@ -1,0 +1,32 @@
+<h1>Create Gas</h1>
+
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-label [nzFor]="'name'">Name</nz-form-label>
+      <nz-form-control nzErrorTip="Please input the gas name!">
+        <input nz-input formControlName="name" id="name" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzFor]="'description'">Description</nz-form-label>
+      <nz-form-control nzErrorTip="Please input the gas description!">
+        <input nz-input formControlName="description" id="description" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzFor]="'nomenclature'">Nomenclature</nz-form-label>
+      <nz-form-control nzErrorTip="Please input the gas nomenclature!">
+        <input nz-input formControlName="nomenclature" id="nomenclature" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" [disabled]="!validateForm.valid">Submit</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+  @if (selectedGas){
+    <app-update-gases [data]="selectedGas" (gasUpdated)="onGasUpdate()"></app-update-gases>
+  }
+  <app-gases-list (gasSelected)="editGas($event)"></app-gases-list>
+

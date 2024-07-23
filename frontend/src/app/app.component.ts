@@ -20,19 +20,9 @@ export class AppComponent {
   constructor() {
     this.menuItems = [
       {
-        label: 'Home', 
+        label: 'CRUD', 
         path: '/welcome', 
         icon: 'home' 
-      },
-      {
-        label: 'Post',
-        path: '/crud-form',
-        icon: 'form',
-      },
-      {
-        label: 'List',
-        path: '/crud',
-        icon: 'bars',
       },
     ];
   }

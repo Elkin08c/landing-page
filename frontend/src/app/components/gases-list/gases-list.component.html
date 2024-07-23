@@ -1,0 +1,30 @@
+<h1>Gases List</h1>
+
+<nz-table
+#basicTable
+[nzData]="data"
+[nzBordered]="true"
+[nzSize]="'middle'"
+ngSkipHydration>
+    <thead>
+        <tr>
+        <th nzWidth="20%">Name</th>
+        <th nzWidth="40%">Description</th>
+        <th nzWidth="10%">Nomenclature</th>
+        <th nzWidth="30%">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (item of data; track $index) {
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.nomenclature }}</td>
+                <td>
+                    <button nz-button (click)="selectedGas(item)">Edit</button> 
+                    <button nz-button nzDanger (click)="deleteGas(item.id)">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</nz-table>
